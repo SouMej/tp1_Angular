@@ -1,0 +1,32 @@
+<h2>Exercice 2 : Calcul du prix TTC</h2>
+
+<div class="card p-4 shadow-sm">
+  <div class="row g-3">
+    <div class="col-md-4">
+      <label class="form-label">Quantité</label>
+      <input type="number" class="form-control" min="1" [(ngModel)]="quantite" />
+    </div>
+
+    <div class="col-md-4">
+      <label class="form-label">Prix unitaire HT</label>
+      <input type="number" class="form-control" min="0" [(ngModel)]="prixUnitaire" />
+    </div>
+
+    <div class="col-md-4">
+      <label class="form-label">TVA (%)</label>
+      <input type="number" class="form-control" min="0" [(ngModel)]="tva" />
+    </div>
+  </div>
+
+  <hr />
+
+  <p>Prix total HT : <strong>{{ prixHT.toFixed(2) }} DT</strong></p>
+
+  @if (remise > 0) {
+    <p class="text-success">
+      Remise appliquée : <strong>{{ remise }} %</strong>
+    </p>
+  }
+
+  <h4>Prix TTC : <span class="badge bg-primary">{{ prixTTC.toFixed(2) }} DT</span></h4>
+</div>
