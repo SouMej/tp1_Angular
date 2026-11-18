@@ -1,10 +1,11 @@
 import { Component, input, output } from '@angular/core';
+import { NgClass } from '@angular/common';
 import { Cv } from '../model/cv';
 import { ItemComponent } from '../item/item.component';
 
 @Component({
   selector: 'app-liste',
-  imports: [ItemComponent],
+  imports: [ItemComponent, NgClass],
   templateUrl: './liste.component.html',
   styleUrl: './liste.component.css',
 })

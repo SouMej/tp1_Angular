@@ -1,0 +1,7 @@
+.cv-odd {
+  --bs-list-group-bg: #e7f1ff;
+}
+
+.cv-even {
+  --bs-list-group-bg: #ffffff;
+}
