@@ -1,0 +1,5 @@
+<div class="list-group">
+  @for (cv of cvs(); track cv.id) {
+    <app-item [cv]="cv" (selectCv)="onSelectCv($event)" />
+  }
+</div>

@@ -17,5 +17,6 @@ import {
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'
+  
 })
 export class App {}

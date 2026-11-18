@@ -4,6 +4,7 @@ import { Color } from './color/color';
 import { Ttc } from './ttc/ttc';
 import { MiniWord } from './mini-word/mini-word';
 import { Rainbow } from './rainbow/rainbow';
+import { CvComponent } from './cv/cv/cv.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'color', pathMatch: 'full' },
@@ -11,5 +12,6 @@ export const routes: Routes = [
   { path: 'ttc', component: Ttc },
   { path: 'mini-word', component: MiniWord },
   { path: 'rainbow', component: Rainbow },
+  { path: 'cv', component: CvComponent },
   // Les autres membres ajouteront leurs routes ici
 ];
