@@ -1,5 +1,9 @@
 <div class="list-group">
-  @for (cv of cvs(); track cv.id) {
-    <app-item [cv]="cv" (selectCv)="onSelectCv($event)" />
+  @for (cv of cvs(); track cv.id; let odd = $odd, even = $even) {
+    <app-item
+      [cv]="cv"
+      [ngClass]="{ 'cv-odd': odd, 'cv-even': even }"
+      (selectCv)="onSelectCv($event)"
+    />
   }
 </div>
