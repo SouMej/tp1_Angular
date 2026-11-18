@@ -1,0 +1,61 @@
+
+<div class="card p-4 shadow-sm">
+  <h2>Exercice 4 - Mini Word</h2>
+  <p>Modifiez l'apparence du paragraphe.</p>
+
+  <div class="row g-3 mb-4">
+
+    <div class="col-md-4">
+      <label class="form-label">Couleur du texte</label>
+      <input
+        type="color"
+        class="form-control form-control-color"
+        [value]="textColor"
+        #colorInput
+        (input)="textColor = colorInput.value"
+      />
+    </div>
+
+    <div class="col-md-4">
+      <label class="form-label">Taille du texte</label>
+      <input
+        type="number"
+        class="form-control"
+        min="10"
+        max="100"
+        [value]="fontSize"
+        #sizeInput
+        (input)="fontSize = +sizeInput.value"
+      />
+    </div>
+
+    <div class="col-md-4">
+      <label class="form-label">Police du texte</label>
+      <select
+        class="form-select"
+        [value]="fontFamily"
+        #fontSelect
+        (change)="fontFamily = fontSelect.value"
+      >
+        @for (font of fonts; track font) {
+          <option [value]="font">{{ font }}</option>
+        }
+      </select>
+    </div>
+
+  </div>
+
+  <div class="preview">
+    <p
+      [ngStyle]="{
+        'color': textColor,
+        'font-size.px': fontSize,
+        'font-family': fontFamily
+      }"
+    >
+      Bienvenue dans Mini Word !
+      Vous pouvez modifier ma couleur,
+      ma taille et ma police.
+    </p>
+  </div>
+</div>
