@@ -10,8 +10,4 @@ import { Cv } from '../model/cv';
 export class ItemComponent {
   cv = input.required<Cv>();
   selectCv = output<Cv>();
-
-  onClick() {
-    this.selectCv.emit(this.cv());
-  }
 }

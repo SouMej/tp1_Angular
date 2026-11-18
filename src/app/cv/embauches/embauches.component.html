@@ -1,0 +1,16 @@
+@if (embauches().length > 0) {
+  <section class="mt-4">
+    <h2 class="h4">Personnes embauchées</h2>
+    <div class="list-group">
+      @for (cv of embauches(); track $index) {
+        <div class="list-group-item d-flex align-items-center gap-3">
+          <img [src]="cv.path" class="rounded-circle" width="50" height="50" alt="photo" />
+          <div>
+            <strong>{{ cv.firstname }} {{ cv.name }}</strong>
+            <div class="text-muted">{{ cv.job }}</div>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+}

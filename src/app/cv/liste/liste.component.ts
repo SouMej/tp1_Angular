@@ -12,8 +12,4 @@ import { ItemComponent } from '../item/item.component';
 export class ListeComponent {
   cvs = input.required<Cv[]>();
   selectCv = output<Cv>();
-
-  onSelectCv(cv: Cv) {
-    this.selectCv.emit(cv);
-  }
 }

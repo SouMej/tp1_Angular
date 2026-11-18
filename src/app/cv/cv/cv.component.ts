@@ -1,24 +1,33 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Cv } from '../model/cv';
+import { CvService } from '../service/cv.service';
+import { EmbaucheService } from '../service/embauche.service';
 import { ListeComponent } from '../liste/liste.component';
 import { DetailComponent } from '../detail/detail.component';
+import { EmbauchesComponent } from '../embauches/embauches.component';
 
 @Component({
   selector: 'app-cv',
-  imports: [ListeComponent, DetailComponent],
+  imports: [ListeComponent, DetailComponent, EmbauchesComponent],
   templateUrl: './cv.component.html',
   styleUrl: './cv.component.css',
 })
 export class CvComponent {
-  cvs: Cv[] = [
-    { id: 1, name: 'Mejri', firstname: 'Sonia', age: 21, cin: '09876543', job: 'Ingénieure Machine Learning ', path: 'images/sonia.jpg' },
-    { id: 2, name: 'Selmi', firstname: 'Emna', age: 22, cin: '07654321', job: 'Ingénieure Cybersécurité', path: 'images/emna.jpg' },
-    { id: 3, name: 'Hanafi', firstname: 'Rayen', age: 22, cin: '08123456', job: 'Ingénieur Blockchain ', path: 'images/rayen.jpg' },
-  ];
+  private readonly cvService = inject(CvService);
+  private readonly embaucheService = inject(EmbaucheService);
 
+  readonly cvs = this.cvService.getCvs();
+  readonly embauches = this.embaucheService.embauches;
   selectedCv = signal<Cv | null>(null);
 
-  onSelectCv(cv: Cv) {
+  onSelectCv(cv: Cv): void {
     this.selectedCv.set(cv);
+  }
+
+  embaucher(): void {
+    const cv = this.selectedCv();
+    if (cv) {
+      this.embaucheService.embaucher(cv);
+    }
   }
 }

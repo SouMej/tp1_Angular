@@ -3,7 +3,7 @@
     <app-item
       [cv]="cv"
       [ngClass]="{ 'cv-odd': odd, 'cv-even': even }"
-      (selectCv)="onSelectCv($event)"
+      (selectCv)="selectCv.emit($event)"
     />
   }
 </div>

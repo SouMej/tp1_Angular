@@ -4,7 +4,20 @@
   </div>
   <div class="col-md-7">
     @if (selectedCv(); as cv) {
-      <app-detail [cv]="cv" />
+      <app-detail [cv]="cv" (embaucher)="embaucher()" />
     }
   </div>
 </div>
+
+<app-embauches />
+
+@if (embauches().length > 3) {
+  <div class="toast show position-fixed bottom-0 end-0 m-3 text-bg-warning" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <strong class="me-auto">Budget dépassé</strong>
+    </div>
+    <div class="toast-body">
+      Le nombre de CVs embauchés dépasse le budget prévu.
+    </div>
+  </div>
+}

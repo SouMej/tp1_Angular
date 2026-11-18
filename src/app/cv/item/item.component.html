@@ -1,4 +1,4 @@
-<div class="list-group-item" (click)="onClick()">
+<div class="list-group-item" (click)="selectCv.emit(cv())">
   <img [src]="cv().path" class="rounded-circle" width="50" height="50" alt="photo" />
   {{ cv().firstname }} {{ cv().name }}
 </div>
