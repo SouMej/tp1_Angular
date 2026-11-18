@@ -1,0 +1,10 @@
+<p>week todo</p>
+
+<div class="week">
+  @for (day of days; track $index) {
+    <div>
+      <h5>{{ day }}</h5>
+      <app-todo-list />
+    </div>
+  }
+</div>
