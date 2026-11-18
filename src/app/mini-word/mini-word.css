@@ -1,0 +1,13 @@
+
+.preview {
+  padding: 30px;
+  min-height: 150px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+}
+
+.preview p {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
