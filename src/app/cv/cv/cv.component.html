@@ -4,7 +4,7 @@
   </div>
   <div class="col-md-7">
     @if (selectedCv(); as cv) {
-      <app-detail [cv]="cv" (embaucher)="embaucher()" />
+      <app-detail [cv]="cv" [dejaEmbauche]="cvExiste(cv)" (embaucher)="embaucher()" />
     }
   </div>
 </div>

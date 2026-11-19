@@ -8,7 +8,7 @@ import { EmbaucheService } from '../service/embauche.service';
   styleUrl: './embauches.component.css',
 })
 export class EmbauchesComponent {
-  private readonly embaucheService = inject(EmbaucheService);
+  embaucheService = inject(EmbaucheService);
 
-  readonly embauches = this.embaucheService.embauches;
+  embauches = this.embaucheService.embauches;
 }

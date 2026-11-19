@@ -13,15 +13,19 @@ import { EmbauchesComponent } from '../embauches/embauches.component';
   styleUrl: './cv.component.css',
 })
 export class CvComponent {
-  private readonly cvService = inject(CvService);
-  private readonly embaucheService = inject(EmbaucheService);
+  cvService = inject(CvService);
+  embaucheService = inject(EmbaucheService);
 
-  readonly cvs = this.cvService.getCvs();
-  readonly embauches = this.embaucheService.embauches;
+  cvs = this.cvService.getCvs();
+  embauches = this.embaucheService.embauches;
   selectedCv = signal<Cv | null>(null);
 
   onSelectCv(cv: Cv): void {
     this.selectedCv.set(cv);
+  }
+
+  cvExiste(cv: Cv): boolean {
+    return this.embaucheService.cvExiste(cv);
   }
 
   embaucher(): void {

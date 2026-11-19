@@ -5,6 +5,8 @@
     <p>{{ cv().job }}</p>
     <p>Age : {{ cv().age }}</p>
     <p>CIN : {{ cv().cin }}</p>
-    <button type="button" class="btn btn-primary" (click)="embaucher.emit()">Embaucher</button>
+    <button type="button" class="btn btn-primary" [disabled]="dejaEmbauche()" (click)="embaucher.emit()">
+      {{ dejaEmbauche() ? 'Déjà embauché' : 'Embaucher' }}
+    </button>
   </div>
 </div>

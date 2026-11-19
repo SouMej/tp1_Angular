@@ -9,5 +9,6 @@ import { Cv } from '../model/cv';
 })
 export class DetailComponent {
   cv = input.required<Cv>();
+  dejaEmbauche = input(false);
   embaucher = output<void>();
 }

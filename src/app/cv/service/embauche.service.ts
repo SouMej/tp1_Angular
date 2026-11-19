@@ -7,7 +7,16 @@ import { Cv } from '../model/cv';
 export class EmbaucheService {
   embauches = signal<Cv[]>([]);
 
-  embaucher(cv: Cv): void {
+  cvExiste(cv: Cv): boolean {
+    return this.embauches().some((embauche) => embauche.id === cv.id);
+  }
+
+  embaucher(cv: Cv): boolean {
+    if (this.cvExiste(cv)) {
+      return false;
+    }
+
     this.embauches.update((liste) => [...liste, cv]);
+    return true;
   }
 }
