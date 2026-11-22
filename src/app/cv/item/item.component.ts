@@ -9,5 +9,12 @@ import { Cv } from '../model/cv';
 })
 export class ItemComponent {
   cv = input.required<Cv>();
+  selectable = input(true);
   selectCv = output<Cv>();
+
+  onSelect(): void {
+    if (this.selectable()) {
+      this.selectCv.emit(this.cv());
+    }
+  }
 }

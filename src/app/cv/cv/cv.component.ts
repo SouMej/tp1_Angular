@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Cv } from '../model/cv';
 import { CvService } from '../service/cv.service';
 import { EmbaucheService } from '../service/embauche.service';
@@ -18,10 +18,10 @@ export class CvComponent {
 
   cvs = this.cvService.getCvs();
   embauches = this.embaucheService.embauches;
-  selectedCv = signal<Cv | null>(null);
+  selectedCv = this.cvService.selectedCv;
 
   onSelectCv(cv: Cv): void {
-    this.selectedCv.set(cv);
+    this.cvService.onSelectCv(cv);
   }
 
   cvExiste(cv: Cv): boolean {
@@ -29,9 +29,6 @@ export class CvComponent {
   }
 
   embaucher(): void {
-    const cv = this.selectedCv();
-    if (cv) {
-      this.embaucheService.embaucher(cv);
-    }
+    this.cvService.embaucherSelectionne();
   }
 }

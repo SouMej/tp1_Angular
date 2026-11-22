@@ -1,3 +1,7 @@
 .list-group-item {
+  cursor: default;
+}
+
+.list-group-item.selectable {
   cursor: pointer;
 }

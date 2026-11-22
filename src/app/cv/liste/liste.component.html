@@ -2,6 +2,7 @@
   @for (cv of cvs(); track cv.id; let odd = $odd, even = $even) {
     <app-item
       [cv]="cv"
+      [selectable]="selectable()"
       [ngClass]="{ 'cv-odd': odd, 'cv-even': even }"
       (selectCv)="selectCv.emit($event)"
     />

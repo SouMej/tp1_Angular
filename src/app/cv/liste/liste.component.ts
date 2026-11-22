@@ -11,5 +11,6 @@ import { ItemComponent } from '../item/item.component';
 })
 export class ListeComponent {
   cvs = input.required<Cv[]>();
+  selectable = input(true);
   selectCv = output<Cv>();
 }

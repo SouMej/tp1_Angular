@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-color',
@@ -8,19 +8,19 @@ import { Component } from '@angular/core';
 })
 export class Color {
   // La couleur de départ (et celle du reset)
-  couleurParDefaut = 'lightblue';
+  couleurParDefaut = signal('lightblue');
 
   // La couleur actuelle du div : au début, c'est celle par défaut
-  couleur = this.couleurParDefaut;
+  couleur = signal(this.couleurParDefaut());
 
   // Appelée à chaque fois qu'on tape dans l'input
   changerCouleur(nouvelleCouleur: string) {
-    this.couleur = nouvelleCouleur;
+    this.couleur.set(nouvelleCouleur);
   }
 
   // Appelée au clic sur le bouton : remet la couleur par défaut et vide l'input
   reinitialiser(input: HTMLInputElement) {
-    this.couleur = this.couleurParDefaut;
+    this.couleur.set(this.couleurParDefaut());
     input.value = '';
   }
 }

@@ -1,5 +1,4 @@
-
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { NgStyle } from '@angular/common';
 
 @Component({
@@ -9,9 +8,9 @@ import { NgStyle } from '@angular/common';
   styleUrl: './mini-word.css'
 })
 export class MiniWord {
-  textColor = '#000000';
-  fontSize = 24;
-  fontFamily = 'Arial';
+  textColor = signal('#000000');
+  fontSize = signal(24);
+  fontFamily = signal('Arial');
 
-  fonts = ['Arial', 'Georgia', 'Verdana', 'Courier New'];
+  fonts = signal(['Arial', 'Georgia', 'Verdana', 'Courier New']);
 }

@@ -1,4 +1,3 @@
-
 <div class="card p-4 shadow-sm">
   <h2>Exercice 4 - Mini Word</h2>
   <p>Modifiez l'apparence du paragraphe.</p>
@@ -10,9 +9,9 @@
       <input
         type="color"
         class="form-control form-control-color"
-        [value]="textColor"
+        [value]="textColor()"
         #colorInput
-        (input)="textColor = colorInput.value"
+        (input)="textColor.set(colorInput.value)"
       />
     </div>
 
@@ -23,9 +22,9 @@
         class="form-control"
         min="10"
         max="100"
-        [value]="fontSize"
+        [value]="fontSize()"
         #sizeInput
-        (input)="fontSize = +sizeInput.value"
+        (input)="fontSize.set(+sizeInput.value)"
       />
     </div>
 
@@ -33,11 +32,11 @@
       <label class="form-label">Police du texte</label>
       <select
         class="form-select"
-        [value]="fontFamily"
+        [value]="fontFamily()"
         #fontSelect
-        (change)="fontFamily = fontSelect.value"
+        (change)="fontFamily.set(fontSelect.value)"
       >
-        @for (font of fonts; track font) {
+        @for (font of fonts(); track font) {
           <option [value]="font">{{ font }}</option>
         }
       </select>
@@ -48,9 +47,9 @@
   <div class="preview">
     <p
       [ngStyle]="{
-        'color': textColor,
-        'font-size.px': fontSize,
-        'font-family': fontFamily
+        'color': textColor(),
+        'font-size.px': fontSize(),
+        'font-family': fontFamily()
       }"
     >
       Bienvenue dans Mini Word !
