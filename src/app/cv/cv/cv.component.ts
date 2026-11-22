@@ -19,6 +19,7 @@ export class CvComponent {
   cvs = this.cvService.getCvs();
   embauches = this.embaucheService.embauches;
   selectedCv = this.cvService.selectedCv;
+  apiError = this.cvService.apiError;
 
   onSelectCv(cv: Cv): void {
     this.cvService.onSelectCv(cv);

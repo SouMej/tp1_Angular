@@ -1,16 +1,29 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable, inject, signal, WritableSignal } from '@angular/core';
 import { Cv } from '../model/cv';
 import { EmbaucheService } from './embauche.service';
+
+interface ApiCv {
+  id: number;
+  name: string;
+  firstname: string;
+  age: number;
+  cin: number | string;
+  job: string;
+  path: string;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class CvService {
+  http = inject(HttpClient);
   embaucheService = inject(EmbaucheService);
 
-  private readonly storageKey = 'cv-list';
+  apiUrl = 'https://apilb.tridevs.net/api/personnes';
+  storageKey = 'cv-list';
 
-  private readonly cvInitials: Cv[] = [
+  readonly cvInitials: Cv[] = [
     { id: 1, name: 'Mejri', firstname: 'Sonia', age: 21, cin: '09876543', job: 'Ingénieure Machine Learning ', path: 'images/sonia.jpg' },
     { id: 2, name: 'Selmi', firstname: 'Emna', age: 22, cin: '07654321', job: 'Ingénieure Cybersécurité', path: 'images/emna.jpg' },
     { id: 3, name: 'Hanafi', firstname: 'Rayen', age: 22, cin: '08123456', job: 'Ingénieur Blockchain ', path: 'images/rayen.jpg' },
@@ -19,29 +32,54 @@ export class CvService {
     { id: 6, name: 'Slim', firstname: 'Nour Nejia', age: 22, cin: '33445566', job: 'Développeuse', path: 'images/nour.jpeg' },
   ];
 
-  cvs = signal<Cv[]>(this.chargerCvs());
+  cvs = signal<Cv[]>(this.cvInitials);
   selectedCv = signal<Cv | null>(null);
+  apiError = signal(false);
 
-  private chargerCvs(): Cv[] {
-    try {
-      const valeur = localStorage.getItem(this.storageKey);
-
-      if (valeur !== null) {
-        return JSON.parse(valeur) as Cv[];
-      }
-    } catch {
-      // localStorage peut être indisponible ou contenir une valeur invalide.
-    }
-
-    return this.cvInitials;
+  constructor() {
+    this.chargerCvsDepuisApi();
   }
 
-  private sauvegarderCvs(): void {
+  chargerCvsDepuisApi(): void {
+    this.http.get<ApiCv[]>(this.apiUrl).subscribe({
+      next: (personnes) => {
+        const cvs = personnes.map((personne) => this.convertirCv(personne));
+        this.cvs.set(cvs);
+        this.apiError.set(false);
+        this.sauvegarderCvs();
+      },
+      error: () => {
+        this.cvs.set(this.cvInitials);
+        this.apiError.set(true);
+        this.sauvegarderCvs();
+      },
+    });
+  }
+
+  convertirCv(personne: ApiCv): Cv {
+    let path = personne.path?.trim() ?? '';
+
+    if (path) {
+      if (path === 'as.jpg') {
+        path = 'images/as.jpg';
+      }
+    }
+
+    return {
+      id: personne.id,
+      name: personne.name,
+      firstname: personne.firstname,
+      age: personne.age,
+      cin: String(personne.cin),
+      job: personne.job,
+      path,
+    };
+  }
+
+  sauvegarderCvs(): void {
     try {
       localStorage.setItem(this.storageKey, JSON.stringify(this.cvs()));
-    } catch {
-      // La suppression reste effective dans la session courante.
-    }
+    } catch {}
   }
 
   getCvs(): WritableSignal<Cv[]> {

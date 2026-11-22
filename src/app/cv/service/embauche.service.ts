@@ -5,11 +5,11 @@ import { Cv } from '../model/cv';
   providedIn: 'root',
 })
 export class EmbaucheService {
-  private readonly storageKey = 'cv-embauches';
+  storageKey = 'cv-embauches';
 
   embauches = signal<Cv[]>(this.chargerEmbauches());
 
-  private chargerEmbauches(): Cv[] {
+  chargerEmbauches(): Cv[] {
     try {
       const valeur = localStorage.getItem(this.storageKey);
 
@@ -23,7 +23,7 @@ export class EmbaucheService {
     return [];
   }
 
-  private sauvegarderEmbauches(): void {
+  sauvegarderEmbauches(): void {
     try {
       localStorage.setItem(this.storageKey, JSON.stringify(this.embauches()));
     } catch {
