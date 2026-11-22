@@ -1,0 +1,63 @@
+<section class="auth-card">
+  <h2 class="h4 mb-4">Authentification</h2>
+
+  <form #authForm="ngForm" (ngSubmit)="envoyer(authForm)">
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        class="form-control"
+        [(ngModel)]="email"
+        required
+        email
+        #emailControl="ngModel"
+        [attr.aria-invalid]="emailControl.invalid && (emailControl.touched || emailControl.dirty)"
+        [attr.aria-describedby]="emailControl.invalid && (emailControl.touched || emailControl.dirty) ? 'email-error' : null"
+      />
+
+      @if (emailControl.invalid && (emailControl.touched || emailControl.dirty)) {
+        @if (emailControl.errors?.['required']) {
+          <div id="email-error" class="error-message" role="alert">
+            L'email est obligatoire.
+          </div>
+        } @else if (emailControl.errors?.['email']) {
+          <div id="email-error" class="error-message" role="alert">
+            Veuillez saisir un email valide.
+          </div>
+        }
+      }
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        class="form-control"
+        [(ngModel)]="password"
+        required
+        minlength="4"
+        #passwordControl="ngModel"
+      />
+
+      @if (passwordControl.invalid && passwordControl.touched) {
+        @if (passwordControl.errors?.['required']) {
+          <div class="error-message">Le password est obligatoire.</div>
+        } @else if (passwordControl.errors?.['minlength']) {
+          <div class="error-message">Le password doit contenir au moins 4 caractères.</div>
+        }
+      }
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary w-100"
+      [disabled]="authForm.invalid"
+    >
+      Envoyer
+    </button>
+  </form>
+</section>

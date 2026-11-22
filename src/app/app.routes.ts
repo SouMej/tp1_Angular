@@ -5,7 +5,8 @@ import { MiniWord } from './mini-word/mini-word';
 import { Rainbow } from './rainbow/rainbow';
 import { CvComponent } from './cv/cv/cv.component';
 import { DetailPageComponent } from './cv/detail-page/detail-page.component';
-import { WeekTodoComponent } from './week-todo/week-todo.component';   // ← ajouté
+import { WeekTodoComponent } from './week-todo/week-todo.component';
+import { Auth } from './auth/auth';   // ← ajouté
 
 
 export const routes: Routes = [
@@ -16,7 +17,8 @@ export const routes: Routes = [
   { path: 'rainbow', component: Rainbow },
   { path: 'cv', component: CvComponent },
   { path: 'cv/:id', component: DetailPageComponent },
-    { path: 'week-todo', component: WeekTodoComponent },               // ← ajouté
+  { path: 'week-todo', component: WeekTodoComponent },
+  { path: 'auth', component: Auth },               // ← ajouté
 
   // Les autres membres ajouteront leurs routes ici
 ];
