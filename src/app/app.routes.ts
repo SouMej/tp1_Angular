@@ -1,10 +1,10 @@
-
 import { Routes } from '@angular/router';
 import { Color } from './color/color';
 import { Ttc } from './ttc/ttc';
 import { MiniWord } from './mini-word/mini-word';
 import { Rainbow } from './rainbow/rainbow';
 import { CvComponent } from './cv/cv/cv.component';
+import { DetailPageComponent } from './cv/detail-page/detail-page.component';
 import { WeekTodoComponent } from './week-todo/week-todo.component';   // ← ajouté
 
 
@@ -15,6 +15,7 @@ export const routes: Routes = [
   { path: 'mini-word', component: MiniWord },
   { path: 'rainbow', component: Rainbow },
   { path: 'cv', component: CvComponent },
+  { path: 'cv/:id', component: DetailPageComponent },
     { path: 'week-todo', component: WeekTodoComponent },               // ← ajouté
 
   // Les autres membres ajouteront leurs routes ici

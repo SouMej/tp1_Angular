@@ -1,0 +1,51 @@
+@if (cv(); as candidat) {
+  <section class="candidate-page">
+    <article class="profile-card">
+      <h1>Cv {{ candidat.firstname }} {{ candidat.name }}</h1>
+
+      <img
+        [src]="candidat.path"
+        class="profile-photo"
+        alt="Photo de {{ candidat.firstname }} {{ candidat.name }}"
+      />
+
+      <h2 class="info-title">ⓘ Informations</h2>
+
+      <dl class="candidate-info">
+        <div>
+          <dt>Name</dt>
+          <dd>{{ candidat.name }}</dd>
+        </div>
+        <div>
+          <dt>Firstname</dt>
+          <dd>{{ candidat.firstname }}</dd>
+        </div>
+        <div>
+          <dt>Job</dt>
+          <dd>{{ candidat.job }}</dd>
+        </div>
+        <div>
+          <dt>Age</dt>
+          <dd>{{ candidat.age }}</dd>
+        </div>
+        <div>
+          <dt>Cin</dt>
+          <dd>{{ candidat.cin }}</dd>
+        </div>
+      </dl>
+
+      <button
+        type="button"
+        class="delete-button"
+        (click)="supprimer(candidat)"
+      >
+        Supprimer
+      </button>
+    </article>
+  </section>
+} @else {
+  <div class="not-found">
+    <h2>CV introuvable</h2>
+    <a class="back-link" routerLink="/cv">Retour à la liste</a>
+  </div>
+}

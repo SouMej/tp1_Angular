@@ -1,12 +1,17 @@
-<div class="card text-center">
-  <div class="card-body">
+  <div class="card-body text-center">
     <img [src]="cv().path" class="rounded-circle" width="120" height="120" alt="photo" />
     <h3>{{ cv().firstname }} {{ cv().name }}</h3>
     <p>{{ cv().job }}</p>
     <p>Age : {{ cv().age }}</p>
     <p>CIN : {{ cv().cin }}</p>
-    <button type="button" class="btn btn-primary" [disabled]="dejaEmbauche()" (click)="embaucher.emit()">
-      {{ dejaEmbauche() ? 'Déjà embauché' : 'Embaucher' }}
-    </button>
+
+    <div class="d-flex justify-content-center gap-2">
+      <button type="button" class="btn btn-primary" [disabled]="dejaEmbauche()" (click)="embaucher.emit()">
+        {{ dejaEmbauche() ? 'Déjà embauché' : 'Embaucher' }}
+      </button>
+
+      <a class="btn btn-secondary" [routerLink]="['/cv', cv().id]">
+        Détails
+      </a>
+    </div>
   </div>
-</div>

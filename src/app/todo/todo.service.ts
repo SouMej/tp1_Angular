@@ -8,7 +8,7 @@ export class TodoService {
   private todos = signal<Todo[]>([]);
 
   getTodos() {
-    return this.todos.asReadonly();
+    return this.todos;
   }
 
   addTodo(todo: Todo) {
